@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomControls.Controls.ReusableEntry"
+             xmlns:helpers="clr-namespace:CustomControls.Helpers"
+             x:Name="This">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <helpers:InputTypeToKeyboardConverter
+                x:Key="InputTypeToKeyboardConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <VerticalStackLayout Spacing="5">
+        <Border x:Name="MainBorder"
+                StrokeThickness="1"
+                Stroke="#D1D5DB"
+                BackgroundColor="#E5E7EB"
+                StrokeShape="RoundRectangle 10"
+                Padding="10,0"
+                HeightRequest="50"
+                HorizontalOptions="Fill">
+
+            <Entry x:Name="InputEntry"
+                   Text="{Binding Text, Mode=TwoWay}"
+                   Placeholder="{Binding Placeholder}"
+                   IsPassword="{Binding IsPassword}"
+                   Keyboard="{Binding InputType, Source={x:Reference This}, Converter={StaticResource InputTypeToKeyboardConverter}}"
+                   FontSize="14"
+                   BackgroundColor="Transparent"
+                   Visual="Default"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   TextChanged="InputEntry_TextChanged"/>
+        </Border>
+
+        <Label x:Name="ErrorLabel"
+               TextColor="Red"
+               FontSize="12"
+               IsVisible="False"/>
+    </VerticalStackLayout>
+</ContentView>

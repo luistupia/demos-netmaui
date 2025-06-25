@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="CajaTextoRedondeada" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="#E5E7EB" /> <!-- Gris claro -->
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Visual" Value="Default" /> <!-- Quita estilo Material -->
+        
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="#D1D5DB" /> <!-- Gris más oscuro al enfocar -->
+                            <Setter Property="TextColor" Value="Black" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+            </Setter>
+    </Style>
+
+</ResourceDictionary>

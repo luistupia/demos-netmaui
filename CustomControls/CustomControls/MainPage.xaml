@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomControls.MainPage"
+             xmlns:controles="clr-namespace:CustomControls.Controls">
+
+    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="White">
+
+        <controles:ReusableEntry
+            Placeholder="Ingrese su nombre completo"
+            x:Name="EntryNombre"
+            InputType="Alphabetic"
+            IsRequired="True"
+            Text="{Binding Numero}" />
+
+        <controles:ReusableEntry
+            Placeholder="Ingrese su correo"
+            InputType="Email"
+            MinLength="9"
+            x:Name="EntryCorreo"
+            IsRequired="True"
+            Text="{Binding Numero}" />
+
+        <controles:ReusableEntry
+            Placeholder="Ingrese su celular"
+            InputType="Numeric"
+            MinLength="9"
+            x:Name="EntryCelular"
+            Text="{Binding Numero}" />
+
+        <!-- CONTRASEÑA -->
+        <controles:ReusableEntryPassword
+            Placeholder="Ingrese su contraseña"
+            IsRequired="False"
+            Text="{Binding Contraseña}" />
+
+        <controles:ReusablePicker
+            Title="Seleccione una opción"
+            ItemsSource="{Binding ListaDeOpciones}"
+            x:Name="MiPicker"
+            IsRequired="True"
+            DisplayMemberPath="Nombre" />
+
+
+        <Button Text="INSCRIBIRSE"
+                x:Name="BtnInscribir"
+                BackgroundColor="#3B82F6"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="16"
+                CornerRadius="10"
+                HeightRequest="50"
+                HorizontalOptions="Fill"
+                Clicked="BtnInscribir_OnClicked"
+                VerticalOptions="Center" />
+
+
+    </VerticalStackLayout>
+
+
+</ContentPage>
