@@ -113,10 +113,10 @@ public partial class ReusableEntry : ContentView
                 }
                 break;
             case Constants.EntryInputType.Alphabetic:
-                if (!Regex.IsMatch(text, @"^[a-zA-Z]*$"))
+                if (!Regex.IsMatch(text ?? string.Empty, @"^[a-zA-Z ]*$"))
                 {
                     isValid = false;
-                    error = "Sólo letras";
+                    error = "Sólo letras y espacios";
                 }
                 break;
             case Constants.EntryInputType.Alphanumeric:
@@ -161,6 +161,6 @@ public partial class ReusableEntry : ContentView
     public bool Validate()
     {
         InputEntry_TextChanged(InputEntry, new TextChangedEventArgs(Text, Text));
-        return !ErrorLabel.IsVisible;
+        return IsValid;
     }
 }

@@ -29,9 +29,9 @@ public partial class MainPage : ContentPage
         };
         
         
-        EntryNombre   .IsValidChanged += (s, ok) => UpdateEnviarState();
-        EntryCorreo   .IsValidChanged += (s, ok) => UpdateEnviarState();
-        EntryCelular  .IsValidChanged += (s, ok) => UpdateEnviarState();
+        //EntryNombre   .IsValidChanged += (s, ok) => UpdateEnviarState();
+        //EntryCorreo   .IsValidChanged += (s, ok) => UpdateEnviarState();
+        //EntryCelular  .IsValidChanged += (s, ok) => UpdateEnviarState();
         
 
         // (Opcional) fuerza comprobación inicial
@@ -48,22 +48,25 @@ public partial class MainPage : ContentPage
                       EntryCorreo.IsValid &&
                       EntryCelular.IsValid &&
                       MiPicker.IsValid;
-        BtnInscribir.IsEnabled = _isValidForm;
+        //BtnInscribir.IsEnabled = _isValidForm;
     }
 
+    private bool FormValidate()
+    {
+        var v1 = EntryCorreo.Validate();
+        var v2 = EntryNombre.Validate();
+        return (v1 && v2);
+    }
 
     private async void BtnInscribir_OnClicked(object? sender, EventArgs e)
     {
-        var v1 = EntryNombre.Validate();
-        var v2 = EntryCorreo.Validate();
-        
-        if (!(v1 && v2))
+        if (!FormValidate())
             return;
-        
+            
         await DisplayAlert(
-            "¡Atención!",          // título
-            "Este es un mensaje.", // mensaje
-            "OK"                   // texto del botón
+            "¡Atención!",          
+            "Este es un mensaje.",
+            "OK"                   
         );
     }
 }

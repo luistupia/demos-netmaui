@@ -10,7 +10,7 @@
         <controles:ReusableEntry
             Placeholder="Ingrese su nombre completo"
             x:Name="EntryNombre"
-            InputType="Alphabetic"
+            InputType="None"
             IsRequired="True"
             Text="{Binding Numero}" />
 
