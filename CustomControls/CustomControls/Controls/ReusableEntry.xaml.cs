@@ -43,7 +43,6 @@ public partial class ReusableEntry : ContentView
         ctl.IsValidChanged?.Invoke(ctl, (bool)newVal);
     }
     
-    // Texto del Entry
     public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(ReusableEntry), default(string), BindingMode.TwoWay);
 
@@ -53,7 +52,6 @@ public partial class ReusableEntry : ContentView
         set => SetValue(TextProperty, value);
     }
 
-    // Placeholder del Entry
     public static readonly BindableProperty PlaceholderProperty =
         BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(ReusableEntry), string.Empty);
 
@@ -63,7 +61,6 @@ public partial class ReusableEntry : ContentView
         set => SetValue(PlaceholderProperty, value);
     }
 
-    // IsPassword del Entry
     public static readonly BindableProperty IsPasswordProperty =
         BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(ReusableEntry), false);
 
@@ -93,15 +90,12 @@ public partial class ReusableEntry : ContentView
         set => SetValue(InputTypeProperty, value);
     }
 
-
-    // Puedes agregar más validaciones aquí si quieres
     private void InputEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         var text = e.NewTextValue ?? string.Empty;
         bool isValid = true;
         string error = string.Empty;
 
-        // 1) Validación según InputType
         switch (InputType)
         {
             case Constants.EntryInputType.Numeric:
@@ -134,7 +128,6 @@ public partial class ReusableEntry : ContentView
                 break;
         }
 
-        // 2) Si pasó la validación de tipo, chequea requerido/MinLength
         if (isValid && IsRequired)
         {
             if (string.IsNullOrWhiteSpace(text))
@@ -150,7 +143,6 @@ public partial class ReusableEntry : ContentView
             error = $"Debe tener al menos {MinLength} caracteres";
         }
 
-        // 3) Mostrar resultado
         if (!isValid)
         {
             ErrorLabel.Text = error ?? "Inalid input";

@@ -12,8 +12,7 @@ public partial class ReusableEntryPassword : ContentView
         InitializeComponent();
         BindingContext = this;
     }
-    
-    // Texto del Entry
+   
     public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(ReusableEntry), default(string), BindingMode.TwoWay);
 
@@ -23,7 +22,6 @@ public partial class ReusableEntryPassword : ContentView
         set => SetValue(TextProperty, value);
     }
 
-    // Placeholder del Entry
     public static readonly BindableProperty PlaceholderProperty =
         BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(ReusableEntry), string.Empty);
 
@@ -42,15 +40,12 @@ public partial class ReusableEntryPassword : ContentView
         set => SetValue(IsRequiredProperty, value);
     }
    
-    // Puedes agregar más validaciones aquí si quieres
     private void InputEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         var text = e.NewTextValue ?? string.Empty;
         bool isValid = true;
         string error = string.Empty;
 
-        
-        // 2) Si pasó la validación de tipo, chequea requerido/MinLength
         if (IsRequired && isValid)
         {
             if (string.IsNullOrWhiteSpace(text))
@@ -60,7 +55,6 @@ public partial class ReusableEntryPassword : ContentView
             }
         }
 
-        // 3) Mostrar resultado
         if (!isValid)
         {
             ErrorLabelPassword.Text = error ?? "Inalid input";
@@ -78,10 +72,8 @@ public partial class ReusableEntryPassword : ContentView
     {
         _isPassword = !_isPassword;
 
-        // 2) Aplica al Entry
         InputEntryPassword.IsPassword = _isPassword;
 
-        // 3) Cambia el icono
         ViewToggleButton.Text = _isPassword
             ? FaSolidIcons.EyeSlash
             : FaSolidIcons.Eye;
