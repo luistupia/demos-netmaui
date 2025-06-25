@@ -6,7 +6,8 @@ public partial class MainPage : ContentPage
 {
     private bool _isValidForm = false;
     public string Contraseña { get; set; }
-    public int  Numero { get; set; }    
+    public int  Numero { get; set; } 
+    public string Nombre { get; set; }
     
     public class Opcion
     {

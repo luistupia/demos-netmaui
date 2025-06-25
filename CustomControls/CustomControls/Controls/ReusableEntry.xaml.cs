@@ -12,12 +12,21 @@ public partial class ReusableEntry : ContentView
     }
     
     public static readonly BindableProperty IsRequiredProperty =
-        BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(ReusablePicker), false);
+        BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(ReusableEntry), false);
 
     public bool IsRequired
     {
         get => (bool)GetValue(IsRequiredProperty);
         set => SetValue(IsRequiredProperty, value);
+    }
+    
+    public static readonly BindableProperty AllowClearProperty =
+        BindableProperty.Create(nameof(AllowClear), typeof(bool), typeof(ReusableEntry), false);
+
+    public bool AllowClear
+    {
+        get => (bool)GetValue(AllowClearProperty);
+        set => SetValue(AllowClearProperty, value);
     }
     
     public static readonly BindableProperty IsValidProperty =
@@ -162,5 +171,10 @@ public partial class ReusableEntry : ContentView
     {
         InputEntry_TextChanged(InputEntry, new TextChangedEventArgs(Text, Text));
         return IsValid;
+    }
+    
+    void OnClearClicked(object sender, EventArgs e)
+    {
+        Text = string.Empty;
     }
 }

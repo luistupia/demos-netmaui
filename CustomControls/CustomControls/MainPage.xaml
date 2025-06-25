@@ -12,6 +12,7 @@
             x:Name="EntryNombre"
             InputType="None"
             IsRequired="True"
+            AllowClear="True"
             Text="{Binding Numero}" />
 
         <controles:ReusableEntry
@@ -41,6 +42,12 @@
             x:Name="MiPicker"
             IsRequired="True"
             DisplayMemberPath="Nombre" />
+        
+        <controles:ReusableFloatingEntry
+            Placeholder="Nombre completo"
+            InputType="Alphabetic"
+            Text="{Binding Nombre}"
+            />
 
 
         <Button Text="INSCRIBIRSE"

@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CustomControls.Controls.ReusableEntry"
+             xmlns:fa="clr-namespace:CustomControls.Helpers"
              xmlns:helpers="clr-namespace:CustomControls.Helpers"
              x:Name="This">
     
@@ -9,6 +10,7 @@
         <ResourceDictionary>
             <helpers:InputTypeToKeyboardConverter
                 x:Key="InputTypeToKeyboardConverter" />
+            <helpers:NullToBoolConverter x:Key="NullToBoolConverter"/>
         </ResourceDictionary>
     </ContentView.Resources>
     
@@ -21,18 +23,38 @@
                 Padding="10,0"
                 HeightRequest="50"
                 HorizontalOptions="Fill">
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <Entry x:Name="InputEntry"
-                   Text="{Binding Text, Mode=TwoWay}"
-                   Placeholder="{Binding Placeholder}"
-                   IsPassword="{Binding IsPassword}"
-                   Keyboard="{Binding InputType, Source={x:Reference This}, Converter={StaticResource InputTypeToKeyboardConverter}}"
-                   FontSize="14"
-                   BackgroundColor="Transparent"
-                   Visual="Default"
-                   TextColor="Black"
-                   VerticalOptions="Center"
-                   TextChanged="InputEntry_TextChanged"/>
+                <Entry x:Name="InputEntry"
+                       Grid.Column="0"
+                       Text="{Binding Text, Mode=TwoWay}"
+                       Placeholder="{Binding Placeholder}"
+                       IsPassword="{Binding IsPassword}"
+                       Keyboard="{Binding InputType, Source={x:Reference This}, Converter={StaticResource InputTypeToKeyboardConverter}}"
+                       FontSize="14"
+                       BackgroundColor="Transparent"
+                       Visual="Default"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       TextChanged="InputEntry_TextChanged"/>
+                
+                <Button
+                    Grid.Column="1"
+                    Text="{x:Static fa:FaSolidIcons.Xmark}"
+                    FontFamily="FontAwesomeRegular"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    IsVisible="{Binding AllowClear,Source={x:Reference This}}"
+                    Clicked="OnClearClicked" />
+            
+            </Grid>
         </Border>
 
         <Label x:Name="ErrorLabel"
